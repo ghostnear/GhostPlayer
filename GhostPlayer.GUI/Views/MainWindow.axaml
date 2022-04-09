@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GhostPlayer.GUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+		mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="540"
+        x:Class="GhostPlayer.GUI.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="GhostPlayer">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid ShowGridLines="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="Auto"></RowDefinition>
+		</Grid.RowDefinitions>
+
+		<TextBlock
+			Text="{Binding Title}"
+			Grid.Row="0" Grid.Column="0"/>
+
+		<!-- Bottom grid containing the media buttons stuff -->
+		<Grid ShowGridLines="True"
+			Grid.Row="1" Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+		
+			<!-- Right side grid has the media control buttons -->
+			<Grid ShowGridLines="True"
+				  Grid.Row="0" Grid.Column="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+					<ColumnDefinition Width="Auto"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+
+				<!-- Volume slider -->
+
+				<!-- Queue buttons -->
+				<Grid
+					Grid.Row="0" Grid.Column="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Button
+						Width="55"
+						Height="55"
+						Grid.Row="0" Grid.Column="0"
+						i:Attached.Icon="fa-angle-double-left">
+					</Button>
+					<Button
+						Width="55"
+						Height="55"
+						Command="{Binding TogglePlayState}"
+						Grid.Row="0" Grid.Column="1">
+						<Panel>
+							<i:Icon
+								Value="fas fa-pause"
+								IsVisible="{Binding IsPlaying}"/>
+							<i:Icon
+								Value="fas fa-play"
+								IsVisible="{Binding !IsPlaying}"/>
+						</Panel>
+					</Button>
+					<Button
+						Width="55"
+						Height="55"
+						Grid.Row="0" Grid.Column="2"
+						i:Attached.Icon="fa-angle-double-right">
+					</Button>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>

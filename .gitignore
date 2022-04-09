@@ -1,0 +1,6 @@
+# Ignore built files
+bin/
+obj/
+
+# Ignore Visual Studio specific files
+.vs/
